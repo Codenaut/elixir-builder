@@ -1,7 +1,7 @@
-FROM elixir:1.6.3
+FROM elixir:1.6.4
 
 MAINTAINER jalp@codenaut.com
-ENV UPDATED_AT "2018-03-16 14:57"
+ENV UPDATED_AT "2018-03-21 12:49"
 
 WORKDIR /tmp
 RUN apt-get clean && apt-get update && apt-get install -y locales && \
