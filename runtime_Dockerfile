@@ -1,7 +1,7 @@
 FROM debian:9
 
 RUN mkdir -p /app/your_app
-COPY dixi_umbrella /app/your_app
+COPY your_app /app/your_app
 
 RUN apt-get clean && apt-get update && apt-get install -y openssl inotify-tools ca-certificates locales imagemagick
 
