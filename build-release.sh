@@ -3,7 +3,7 @@ set -e
 source=`pwd`
 libs=$source/../libs
 
-rm -rf amd64/_build
+rm -rf amd64/
 mkdir -p amd64/rel 2> /dev/null
 cp $source/rel/config.exs $source/amd64/rel
 

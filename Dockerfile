@@ -1,7 +1,23 @@
-FROM elixir:1.6.6
+FROM erlang:21.0.2
 
 MAINTAINER jalp@codenaut.com
-ENV UPDATED_AT "2018-06-21 10.08"
+ENV UPDATED_AT "2018-07-11 13.21"
+
+# elixir expects utf8.
+ENV ELIXIR_VERSION="v1.6.6" \
+	LANG=C.UTF-8
+
+RUN set -xe \
+	&& ELIXIR_DOWNLOAD_URL="https://github.com/elixir-lang/elixir/archive/${ELIXIR_VERSION}.tar.gz" \
+	&& ELIXIR_DOWNLOAD_SHA256="74507b0646bf485ee3af0e7727e3fdab7123f1c5ecf2187a52a928ad60f93831" \
+	&& curl -fSL -o elixir-src.tar.gz $ELIXIR_DOWNLOAD_URL \
+	&& echo "$ELIXIR_DOWNLOAD_SHA256  elixir-src.tar.gz" | sha256sum -c - \
+	&& mkdir -p /usr/local/src/elixir \
+	&& tar -xzC /usr/local/src/elixir --strip-components=1 -f elixir-src.tar.gz \
+	&& rm elixir-src.tar.gz \
+	&& cd /usr/local/src/elixir \
+	&& make install clean
+
 
 WORKDIR /tmp
 RUN apt-get clean && apt-get update && apt-get install -y locales && \
@@ -18,8 +34,8 @@ VOLUME /build
 WORKDIR /build
 
 ENV MIX_ENV prod
-ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
-ENV LC_CTYPE en_US.UTF-8
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+ENV LC_CTYPE C.UTF-8
 
 CMD ["mix", "release"]
