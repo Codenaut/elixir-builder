@@ -1,22 +1,25 @@
 FROM debian:9
 
-RUN mkdir -p /app/your_app
-COPY your_app /app/your_app
+ENV APP_NAME=yourapp
+
+RUN mkdir -p /app/${APP_NAME}
+COPY ${APP_NAME} /app/${APP_NAME}
 
 RUN apt-get clean && apt-get update && apt-get install -y openssl inotify-tools ca-certificates locales imagemagick
 
-RUN locale-gen "en_US.UTF-8"
-ENV LANGUAGE="en_US.UTF-8"
-ENV LANG="en_US.UTF-8"
-ENV LC_ALL="en_US.UTF-8"
-ENV LC_CTYPE="en_US.UTF-8"
-RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
-RUN echo "LANG=en_US.UTF-8" > /etc/default/locale
+RUN locale-gen "C.UTF-8"
+ENV LANGUAGE="C.UTF-8"
+ENV LANG="C.UTF-8"
+ENV LC_ALL="C.UTF-8"
+ENV LC_CTYPE="C.UTF-8"
+RUN sed -i -e 's/# C.UTF-8 UTF-8/C.UTF-8 UTF-8/' /etc/locale.gen
+RUN echo "LANG=C.UTF-8" > /etc/default/locale
 RUN dpkg-reconfigure --frontend=noninteractive locales
 
 ENV REPLACE_OS_VARS=true
 ENV PORT=8000
 EXPOSE 8000
 
-CMD ["/app/your_app/bin/your_app", "foreground"]
+#Environment variables are not expanded in CMD
+CMD ["/app/yourapp/bin/yourapp", "foreground"]
 
