@@ -1,4 +1,4 @@
-FROM erlang:21.0.6
+FROM erlang:21.0.9
 
 MAINTAINER jalp@codenaut.com
 ENV UPDATED_AT "2018-08-27 17.05"
