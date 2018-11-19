@@ -1,7 +1,7 @@
-FROM erlang:21.1.1
+FROM erlang:21.1.2
 
 MAINTAINER jalp@codenaut.com
-ENV UPDATED_AT "2018-10-29 10.04"
+ENV UPDATED_AT "2018-11-19 08.53"
 
 # elixir expects utf8
 ENV ELIXIR_VERSION="v1.7.4" \
