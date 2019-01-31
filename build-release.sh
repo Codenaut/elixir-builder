@@ -5,7 +5,7 @@ libs=$source/../libs
 
 rm -rf amd64/
 mkdir -p amd64/rel 2> /dev/null
-cp $source/rel/config.exs $source/amd64/rel
+cp -r $source/rel/* $source/amd64/rel/
 
 builddir=$source/amd64/_build
 depsdir=$source/amd64/deps
