@@ -18,7 +18,12 @@ RUN dpkg-reconfigure --frontend=noninteractive locales
 
 ENV REPLACE_OS_VARS=true
 ENV PORT=8000
-EXPOSE 8000
+#Erlang port mapper daemon is at port 4369
+#Node ports are at 10001 - 10010
+#Set node port assignment by setting inet_dist_listen_min and max
+#iex --name yourapp@example.com --cookie monster --erl "-kernel inet_dist_listen_min 10001 inet_dist_listen_max 10010"
+EXPOSE 8000 4369 10001-10010
+
 
 #Environment variables are not expanded in CMD
 CMD ["/app/yourapp/bin/yourapp", "foreground"]
