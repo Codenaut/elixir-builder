@@ -1,15 +1,15 @@
-FROM erlang:22.0.3
+FROM erlang:22.0.4
 
 MAINTAINER jalp@codenaut.com
-ENV UPDATED_AT "2019-06-19 15.16"
+ENV UPDATED_AT "2019-06-25 09.42"
 
 # elixir expects utf8
-ENV ELIXIR_VERSION="v1.8.2" \
+ENV ELIXIR_VERSION="v1.9.0" \
 	LANG=C.UTF-8
 
 RUN set -xe \
 	&& ELIXIR_DOWNLOAD_URL="https://github.com/elixir-lang/elixir/archive/${ELIXIR_VERSION}.tar.gz" \
-	&& ELIXIR_DOWNLOAD_SHA256="cf9bf0b2d92bc4671431e3fe1d1b0a0e5125f1a942cc4fdf7914b74f04efb835" \
+	&& ELIXIR_DOWNLOAD_SHA256="dbf4cb66634e22d60fe4aa162946c992257f700c7db123212e7e29d1c0b0c487" \
 	&& curl -fSL -o elixir-src.tar.gz $ELIXIR_DOWNLOAD_URL \
 	&& echo "$ELIXIR_DOWNLOAD_SHA256  elixir-src.tar.gz" | sha256sum -c - \
 	&& mkdir -p /usr/local/src/elixir \
