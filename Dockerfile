@@ -2,9 +2,9 @@
 FROM buildpack-deps:stretch
 
 MAINTAINER jalp@codenaut.com
-ENV UPDATED_AT "2020-03-02 09.49"
+ENV UPDATED_AT "2020-04-08 11.18"
 
-ENV OTP_VERSION="22.2.8" \
+ENV OTP_VERSION="22.3.1" \
     REBAR3_VERSION="3.13.1"
 
 LABEL org.opencontainers.image.version=$OTP_VERSION
@@ -18,7 +18,7 @@ ENV ELIXIR_VERSION="v1.10.2" \
 # build process:
 RUN set -xe \
 	&& OTP_DOWNLOAD_URL="https://github.com/erlang/otp/archive/OTP-${OTP_VERSION}.tar.gz" \
-	&& OTP_DOWNLOAD_SHA256="71f73ddd59db521928a0f6c8d4354d6f4e9f4bfbd0b40d321cd5253a6c79b095" \
+	&& OTP_DOWNLOAD_SHA256="34677d4604b6357db03b6cf79226d9fc1bbdf0ecb5e7545f2fe7a834cec93a83" \
 	&& runtimeDeps='libodbc1 \
 			libsctp1 \
 			libwxgtk3.0' \
