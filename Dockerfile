@@ -2,15 +2,15 @@
 FROM buildpack-deps:stretch
 
 MAINTAINER jalp@codenaut.com
-ENV UPDATED_AT "2020-04-08 11.18"
+ENV UPDATED_AT "2020-04-27 09.36"
 
-ENV OTP_VERSION="22.3.1" \
+ENV OTP_VERSION="22.3.2" \
     REBAR3_VERSION="3.13.1"
 
 LABEL org.opencontainers.image.version=$OTP_VERSION
 
 # elixir expects utf8
-ENV ELIXIR_VERSION="v1.10.2" \
+ENV ELIXIR_VERSION="v1.10.3" \
 	LANG=C.UTF-8
 
 # Build erlang
@@ -18,7 +18,7 @@ ENV ELIXIR_VERSION="v1.10.2" \
 # build process:
 RUN set -xe \
 	&& OTP_DOWNLOAD_URL="https://github.com/erlang/otp/archive/OTP-${OTP_VERSION}.tar.gz" \
-	&& OTP_DOWNLOAD_SHA256="34677d4604b6357db03b6cf79226d9fc1bbdf0ecb5e7545f2fe7a834cec93a83" \
+	&& OTP_DOWNLOAD_SHA256="4a3719c71a7998e4f57e73920439b4b1606f7c045e437a0f0f9f1613594d3eaa" \
 	&& runtimeDeps='libodbc1 \
 			libsctp1 \
 			libwxgtk3.0' \
@@ -81,7 +81,7 @@ RUN set -xe \
 
 RUN set -xe \
 	&& ELIXIR_DOWNLOAD_URL="https://github.com/elixir-lang/elixir/archive/${ELIXIR_VERSION}.tar.gz" \
-	&& ELIXIR_DOWNLOAD_SHA256="5adffcf4389aa82fcfbc84324ebbfa095fc657a0e15b2b055fc05184f96b2d50" \
+	&& ELIXIR_DOWNLOAD_SHA256="f3035fc5fdade35c3592a5fa7c8ee1aadb736f565c46b74b68ed7828b3ee1897" \
 	&& curl -fSL -o elixir-src.tar.gz $ELIXIR_DOWNLOAD_URL \
 	&& echo "$ELIXIR_DOWNLOAD_SHA256  elixir-src.tar.gz" | sha256sum -c - \
 	&& mkdir -p /usr/local/src/elixir \
