@@ -1,5 +1,5 @@
-#FROM buildpack-deps:buster
-FROM buildpack-deps:stretch
+FROM buildpack-deps:buster
+#FROM buildpack-deps:stretch
 
 MAINTAINER jalp@codenaut.com
 ENV UPDATED_AT "2020-04-27 09.36"
